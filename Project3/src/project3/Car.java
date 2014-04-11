@@ -5,20 +5,26 @@ package project3;
  * Created by Calvin Wong on 4/5/14.
  */
 import java.util.Random;
+import java.util.Stack;
 
 public class Car {
 
     private int initCar;
+    private static int place;
+    private int initPlace;
     private int engineType;
     private int tireType;
     private int carWeight;
     private static int numOfCars = 0;
     private int carSpeed;
     Random rand = new Random();
+   // Venue route;
 
     // constructor to randomize car object
     public Car() {
-
+       // route = new Venue();
+        this.place=1;
+        this.initPlace=place;
         this.numOfCars++; // add number of cars
         this.initCar = numOfCars - 1; //  start car index - 1
         this.engineType = rand.nextInt(5) + 1; // random engine type from 1 to 5
@@ -81,11 +87,27 @@ public class Car {
     public int getCarSpeed() {
         return carSpeed;
     }
-
+    public int getPlace(){
+        initPlace=place;
+        return place;
+    }
+    public void incPlace(){
+        place++;
+    }
+    public int getInitPlace(){
+        return initPlace;
+    }
+   /* public int getTotalDistance(){
+        route.getTotalDistance();
+    }
+    public Stack getRoute(){
+        return route.getStack();
+    }
+*/
     // calculates speed
     public int calcSpeed() {
 
-        int speed = (((getEngineType() + getTireType() + rand.nextInt(11)-1) * 2000) / getCarWeight());
+        int speed = (((getEngineType() + getTireType() + rand.nextInt(20)-1) * 2000) / getCarWeight());
         return speed;
     }
 

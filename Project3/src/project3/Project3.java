@@ -80,9 +80,10 @@ public class Project3 extends JFrame implements Runnable, KeyListener{
                 cars.get(i).setPaintable(true);
                 cars.get(i).repaint();
                 top.setTime();
-                if(cars.get(i).win()){
-                    gameloop=null;
-                    JOptionPane.showMessageDialog(null,"The Winning car is "+cars.get(i).getCar()+"  In "+top.getTime()+" Seconds");
+                if(cars.get(i).finished()&&cars.get(i).win()){
+                   // gameloop=null;
+                    JOptionPane.showMessageDialog(null,"PLACE: "+ cars.get(i).getCar().getPlace()+"\n"+cars.get(i).getCar()+ "\n In "+top.getTime()+" Seconds");
+                    cars.get(i).getCar().incPlace();
                 }
             }
             }

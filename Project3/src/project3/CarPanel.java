@@ -7,6 +7,7 @@
 package project3;
 
 import java.awt.Color;
+import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.util.ArrayList;
@@ -26,13 +27,15 @@ public class CarPanel extends JPanel{
     public static int scrollX;
     private int maxDest;
     private boolean p;
+    private boolean fin;
     public CarPanel(){
         p = false;
+        fin = true;
         scrollX=0;
-        maxDest = 500;
         r = new Random();
         c = new Color(r.nextInt(255),r.nextInt(255),r.nextInt(255));
         car = new Car();
+        maxDest = /*car.getTotalDistance()*/5000;
         movement=0;
         dest = new ArrayList<>();
         dest.add(new ImageIcon("A.JPG"));
@@ -44,7 +47,7 @@ public class CarPanel extends JPanel{
     public void paintComponent(Graphics g){
         super.paintComponent(g);
         Graphics2D g2d = (Graphics2D) g;
-        if(p){
+        if(p&&!win()){
         increaseMove();
         p=false;
         }
@@ -59,16 +62,27 @@ public class CarPanel extends JPanel{
         if(movement>this.getWidth()+scrollX-this.getHeight()/2-100){
             scrollX+=car.calcSpeed()/2;
         }
+        if(!fin){
+            g2d.setColor(Color.BLACK);
+            g2d.setFont(new Font("Serif", Font.ITALIC,50));
+            g2d.drawString(""+car.getInitPlace(), maxDest-scrollX+5, this.getHeight()-this.getHeight()/2);
+        }
     }
     public void increaseMove(){
         movement+=car.calcSpeed()/2;
     }
     public boolean win(){
         if(movement-scrollX>=maxDest-scrollX-this.getHeight()/2){
+            fin = false;
             return true;
+            
         }
-        else
+        else{
             return false;
+        }
+    }
+    public boolean finished(){
+        return fin;
     }
     public Car getCar(){
         return car;
