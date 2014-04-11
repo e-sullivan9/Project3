@@ -24,7 +24,6 @@ public class CarPanel extends JPanel{
     private Random r;
     private Color c;
     public static int scrollX;
-    private int scrollY;
     private int maxDest;
     private boolean p;
     public CarPanel(){

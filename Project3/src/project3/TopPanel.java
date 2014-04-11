@@ -36,6 +36,7 @@ public class TopPanel extends JPanel implements ActionListener{
     public boolean begin(){
         return b;
     }
+    @Override
      public void actionPerformed(ActionEvent e){
          if(e.getSource()==start){
              if(b){

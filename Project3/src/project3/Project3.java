@@ -8,6 +8,7 @@ package project3;
 
 import java.awt.Color;
 import java.awt.Dimension;
+import java.awt.Font;
 import java.awt.GridLayout;
 import java.awt.Toolkit;
 import java.awt.event.KeyEvent;
@@ -55,6 +56,7 @@ public class Project3 extends JFrame implements Runnable, KeyListener{
         }
         i = 0;
         info = new JLabel(cars.get(i).getCar().toString(),JLabel.CENTER);
+        info.setFont(new Font("Serif",Font.BOLD,16));
         cars.get(i).setBackground(Color.YELLOW);
         add(info);
         setVisible(true);
@@ -92,14 +94,6 @@ public class Project3 extends JFrame implements Runnable, KeyListener{
     @Override
     public void keyTyped(KeyEvent e) {
        // throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-       /* if(e.getKeyCode()==KeyEvent.VK_UP){
-            System.out.println("here");
-            info.changeCarUp();
-        }
-        if(e.getKeyCode()==KeyEvent.VK_DOWN){
-            info.changeCarUp();
-        }
-        */
     }
 
     @Override
