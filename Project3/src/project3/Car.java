@@ -119,8 +119,8 @@ public class Car {
         String color = carColor[rand.nextInt(carColor.length)];
         String brand = carModel[rand.nextInt(carModel.length)];
 
-        return "RACECAR # " + (getInitCar() + 1) + "\nCar Make: " + brand + "\nCar Color: " + color + "\nEngine Type: " + engine + "\nTire Type: " + tire +
-                "\nCar Weight: " + getCarWeight() + " LBS\nCar Speed: " + getCarSpeed() + " MPH\n";
+        return "RACECAR # " + (getInitCar() + 1) + "\n Car Make: " + brand + "\n Car Color: " + color + "\n Engine Type: " + engine + "\nTire Type: " + tire +
+                "\n Car Weight: " + getCarWeight() + " LBS\n Car Speed: " + getCarSpeed() + " MPH\n";
     }
 } // end of class
 

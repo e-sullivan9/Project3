@@ -16,13 +16,13 @@ import javax.swing.*;
  * @author Eric Sullivan
  */
 public class TopPanel extends JPanel implements ActionListener{
-    JButton start;
-    JLabel title;
-    JLabel timer;
-    private Project3 p;
+    private JButton start;
+    private JLabel title;
+    private JLabel timer;
+    private boolean b;
     
-    public TopPanel(Project3 p){
-        this.p=p;
+    public TopPanel(){
+        b = false;
         start = new JButton("Start");
         title = new JLabel("",JLabel.CENTER);
         timer = new JLabel("00:00",JLabel.CENTER);
@@ -32,9 +32,19 @@ public class TopPanel extends JPanel implements ActionListener{
         add(timer);
         start.addActionListener(this);
     }
+    public boolean begin(){
+        return b;
+    }
      public void actionPerformed(ActionEvent e){
          if(e.getSource()==start){
-             p.start();
+             if(b){
+                 b=false;
+                 start.setText("Start");
+             }
+             else{
+             b=true;
+             start.setText("Pause");
+             }
          }
      }
 }

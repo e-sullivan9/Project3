@@ -18,17 +18,14 @@ import javax.swing.*;
  * @author Eric Sullivan
  */
 public class CarPanel extends JPanel{
-    ArrayList<ImageIcon> dest;
-    ImageIcon road;
-    Car car; 
-    int y;
-    int x;
-    int movement;
-    Random r;
-    Color c;
+    private ArrayList<ImageIcon> dest;
+    private Car car; 
+    private int movement;
+    private Random r;
+    private Color c;
     public static int scrollX;
-    int scrollY;
-    int maxDest;
+    private int scrollY;
+    private int maxDest;
     public CarPanel(){
         /*GridBagLayout c = new GridBagLayout();
         this.setLayout(c);
@@ -38,16 +35,12 @@ public class CarPanel extends JPanel{
         r = new Random();
         c = new Color(r.nextInt(255),r.nextInt(255),r.nextInt(255));
         car = new Car();
-        System.out.println(car.getCarSpeed());
-        x =30;
-        y=0;
         movement=0;
         dest = new ArrayList<>();
         dest.add(new ImageIcon("A.JPG"));
         dest.add(new ImageIcon("B.JPG"));
         dest.add(new ImageIcon("C.JPG"));
         dest.add(new ImageIcon("D.JPG"));
-        road = new ImageIcon("Line.JPG");
         setBorder(BorderFactory.createLineBorder(Color.BLACK));
         //repaint();
     }
