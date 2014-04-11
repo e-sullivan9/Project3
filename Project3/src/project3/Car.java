@@ -85,7 +85,7 @@ public class Car {
     // calculates speed
     public int calcSpeed() {
 
-        int speed = (((getEngineType() + getTireType() + 11) * 2000) / getCarWeight());
+        int speed = (((getEngineType() + getTireType() + rand.nextInt(11)-1) * 2000) / getCarWeight());
         return speed;
     }
 
@@ -119,7 +119,7 @@ public class Car {
         String color = carColor[rand.nextInt(carColor.length)];
         String brand = carModel[rand.nextInt(carModel.length)];
 
-        return "RACECAR #" + (getInitCar() + 1) + "\nCar Make: " + brand + "\nCar Color: " + color + "\nEngine Type: " + engine + "\nTire Type: " + tire +
+        return "RACECAR # " + (getInitCar() + 1) + "\nCar Make: " + brand + "\nCar Color: " + color + "\nEngine Type: " + engine + "\nTire Type: " + tire +
                 "\nCar Weight: " + getCarWeight() + " LBS\nCar Speed: " + getCarSpeed() + " MPH\n";
     }
 } // end of class

@@ -61,6 +61,10 @@ public class Project3 extends JFrame implements Runnable{
             }
             for(int i = 0;i<num;i++){
                 cars.get(i).repaint();
+                if(cars.get(i).win()){
+                    gameloop = null;
+                    JOptionPane.showMessageDialog(null,"The Winning car is "+cars.get(i).getCar());
+                }
             }
         }
     }

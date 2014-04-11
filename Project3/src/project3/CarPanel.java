@@ -26,13 +26,19 @@ public class CarPanel extends JPanel{
     int movement;
     Random r;
     Color c;
+    public static int scrollX;
+    int scrollY;
+    int maxDest;
     public CarPanel(){
         /*GridBagLayout c = new GridBagLayout();
         this.setLayout(c);
         */
+        scrollX=0;
+        maxDest = 5000;
         r = new Random();
         c = new Color(r.nextInt(255),r.nextInt(255),r.nextInt(255));
         car = new Car();
+        System.out.println(car.getCarSpeed());
         x =30;
         y=0;
         movement=0;
@@ -49,11 +55,30 @@ public class CarPanel extends JPanel{
         super.paintComponent(g);
         Graphics2D g2d = (Graphics2D) g;
         g2d.setColor(c);
-        g2d.fillOval(movement%this.getWidth(), this.getHeight()-this.getHeight()/2, this.getHeight()/2, this.getHeight()/2);
+        g2d.fillOval(movement-scrollX, this.getHeight()-this.getHeight()/2, this.getHeight()/2, this.getHeight()/2);
+        if(movement>this.getWidth()+scrollX-this.getHeight()/2-50){
+            scrollX+=car.calcSpeed()/2;
+        }
+        g2d.setColor(Color.BLACK);
+        g2d.drawImage(dest.get(0).getImage(), 0-scrollX, 10, null);
+        g2d.drawImage(dest.get(1).getImage(), maxDest/2-maxDest/4-scrollX, 10, null);
+        g2d.drawImage(dest.get(2).getImage(), maxDest/2+maxDest/4-scrollX, 10, null);
+        g2d.drawImage(dest.get(3).getImage(), maxDest-scrollX-50, 10, null);
+        g2d.fillRect(0-scrollX, this.getHeight()-this.getHeight()/2-10, maxDest, 10);
         increaseMove();
     }
     public void increaseMove(){
-        movement+=car.calcSpeed();;
+        movement+=car.calcSpeed()/2;
+    }
+    public boolean win(){
+        if(movement-scrollX>=maxDest-scrollX-this.getHeight()/2){
+            return true;
+        }
+        else
+            return false;
+    }
+    public Car getCar(){
+        return car;
     }
     
     

@@ -24,7 +24,7 @@ public class TopPanel extends JPanel implements ActionListener{
     public TopPanel(Project3 p){
         this.p=p;
         start = new JButton("Start");
-        title = new JLabel("Title",JLabel.CENTER);
+        title = new JLabel("",JLabel.CENTER);
         timer = new JLabel("00:00",JLabel.CENTER);
         setLayout(new GridLayout(1,3));
         add(start);
