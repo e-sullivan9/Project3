@@ -6,6 +6,7 @@
 
 package project3;
 
+import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.GridLayout;
 import java.awt.Toolkit;
@@ -14,6 +15,7 @@ import java.awt.event.KeyListener;
 import java.util.ArrayList;
 import java.util.Scanner;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JOptionPane;
  
 
@@ -31,12 +33,15 @@ public class Project3 extends JFrame implements Runnable, KeyListener{
      private ArrayList<CarPanel> cars;
      private Thread gameloop;
      private int num;
-     private InfoPanel info;
      private TopPanel top;
+     private Color c;
+     private JLabel info;
+     private int i;
      
     public Project3(int num){
         super("CarRace");
         this.num = num;
+        c = this.getBackground();
         grid = new GridLayout(this.num+2,1);
         top = new TopPanel();
         add(top);
@@ -44,17 +49,19 @@ public class Project3 extends JFrame implements Runnable, KeyListener{
         setSize(screenSize);
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         cars= new ArrayList<>();
-        for(int i=0;i<num;i++){
+        for(int j=0;j<num;j++){
             cars.add(new CarPanel());
-            add(cars.get(i));
+            add(cars.get(j));
         }
-        info = new InfoPanel(this);
+        i = 0;
+        info = new JLabel(cars.get(i).getCar().toString(),JLabel.CENTER);
+        cars.get(i).setBackground(Color.YELLOW);
         add(info);
         setVisible(true);
-       // start();
     }
    public void start(){
-        addKeyListener(this);
+        this.addKeyListener(this);
+        this.setFocusable(true);
         gameloop = new Thread(this);
         gameloop.start();
     }
@@ -68,6 +75,7 @@ public class Project3 extends JFrame implements Runnable, KeyListener{
             }
             if(top.begin()){
             for(int i = 0;i<num;i++){
+                cars.get(i).setPaintable(true);
                 cars.get(i).repaint();
                 if(cars.get(i).win()){
                     gameloop = null;
@@ -83,21 +91,42 @@ public class Project3 extends JFrame implements Runnable, KeyListener{
     
     @Override
     public void keyTyped(KeyEvent e) {
-        System.out.println("here");
        // throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-        if(e.getKeyCode()==KeyEvent.VK_UP){
+       /* if(e.getKeyCode()==KeyEvent.VK_UP){
+            System.out.println("here");
             info.changeCarUp();
         }
         if(e.getKeyCode()==KeyEvent.VK_DOWN){
             info.changeCarUp();
         }
+        */
     }
 
     @Override
     public void keyPressed(KeyEvent e) {
-        System.out.println("here");
-        if(e.getKeyCode()==KeyEvent.VK_DOWN){
-            info.changeCarUp();
+        cars.get(i).setPaintable(false);
+       if(e.getKeyCode()==KeyEvent.VK_UP){
+           cars.get(i).setBackground(c);
+           if(i==0){
+               i=cars.get(i).getCar().getNumOfCars()-1;
+        }
+        else{
+              i-=1;
+        }
+        info.setText(""+cars.get(i).getCar().toString());
+        cars.get(i).setBackground(Color.YELLOW);
+        }
+       if(e.getKeyCode()==KeyEvent.VK_DOWN){
+           cars.get(i).setPaintable(false);
+           cars.get(i).setBackground(c);
+         if(i==cars.get(i).getCar().getNumOfCars()-1){
+               i=0;
+        }
+        else{
+              i+=1;
+        }
+        info.setText(""+cars.get(i).getCar().toString());
+        cars.get(i).setBackground(Color.YELLOW);
         }
        // throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }

@@ -26,10 +26,12 @@ public class CarPanel extends JPanel{
     public static int scrollX;
     private int scrollY;
     private int maxDest;
+    private boolean p;
     public CarPanel(){
         /*GridBagLayout c = new GridBagLayout();
         this.setLayout(c);
         */
+        p = false;
         scrollX=0;
         maxDest = 5000;
         r = new Random();
@@ -42,7 +44,6 @@ public class CarPanel extends JPanel{
         dest.add(new ImageIcon("C.JPG"));
         dest.add(new ImageIcon("D.JPG"));
         setBorder(BorderFactory.createLineBorder(Color.BLACK));
-        //repaint();
     }
     public void paintComponent(Graphics g){
         super.paintComponent(g);
@@ -58,7 +59,9 @@ public class CarPanel extends JPanel{
         g2d.drawImage(dest.get(2).getImage(), maxDest/2+maxDest/4-scrollX, 10, null);
         g2d.drawImage(dest.get(3).getImage(), maxDest-scrollX-50, 10, null);
         g2d.fillRect(0-scrollX, this.getHeight()-this.getHeight()/2-10, maxDest, 10);
+        if(p){
         increaseMove();
+        }
     }
     public void increaseMove(){
         movement+=car.calcSpeed()/2;
@@ -73,6 +76,7 @@ public class CarPanel extends JPanel{
     public Car getCar(){
         return car;
     }
-    
-    
+    public void setPaintable(boolean p){
+        this.p=p;
+    }
 }

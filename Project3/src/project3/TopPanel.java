@@ -31,6 +31,7 @@ public class TopPanel extends JPanel implements ActionListener{
         add(title);
         add(timer);
         start.addActionListener(this);
+        start.setFocusable(false);
     }
     public boolean begin(){
         return b;
