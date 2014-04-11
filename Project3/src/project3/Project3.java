@@ -79,9 +79,10 @@ public class Project3 extends JFrame implements Runnable, KeyListener{
             for(int i = 0;i<num;i++){
                 cars.get(i).setPaintable(true);
                 cars.get(i).repaint();
+                top.setTime();
                 if(cars.get(i).win()){
-                    gameloop = null;
-                    JOptionPane.showMessageDialog(null,"The Winning car is "+cars.get(i).getCar());
+                    gameloop=null;
+                    JOptionPane.showMessageDialog(null,"The Winning car is "+cars.get(i).getCar()+"  In "+top.getTime()+" Seconds");
                 }
             }
             }
@@ -98,7 +99,9 @@ public class Project3 extends JFrame implements Runnable, KeyListener{
 
     @Override
     public void keyPressed(KeyEvent e) {
-        cars.get(i).setPaintable(false);
+        for(int j =0;j<0;j++){
+        cars.get(j).setPaintable(false);
+        }
        if(e.getKeyCode()==KeyEvent.VK_UP){
            cars.get(i).setBackground(c);
            if(i==0){
@@ -111,7 +114,9 @@ public class Project3 extends JFrame implements Runnable, KeyListener{
         cars.get(i).setBackground(Color.YELLOW);
         }
        if(e.getKeyCode()==KeyEvent.VK_DOWN){
-           cars.get(i).setPaintable(false);
+           for(int j =0;j<0;j++){
+            cars.get(j).setPaintable(false);
+           }
            cars.get(i).setBackground(c);
          if(i==cars.get(i).getCar().getNumOfCars()-1){
                i=0;
@@ -133,10 +138,13 @@ public class Project3 extends JFrame implements Runnable, KeyListener{
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        Scanner scan = new Scanner(System.in);
-        String number = JOptionPane.showInputDialog(null, "How many cars?");
+        //Scanner scan = new Scanner(System.in);
+        int numb=0;
+        while(numb<2||numb>6) {
+        String number = JOptionPane.showInputDialog(null, "How many cars? 2-6");
         //System.out.println(number);
-        int numb = Integer.parseInt(number);
+        numb = Integer.parseInt(number);
+        }
         //System.out.print(numb);
         //int numb = scan.nextInt();
         new Project3(numb).start();

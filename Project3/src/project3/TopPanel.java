@@ -6,6 +6,7 @@
 
 package project3;
 
+import java.awt.Font;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -20,12 +21,15 @@ public class TopPanel extends JPanel implements ActionListener{
     private JLabel title;
     private JLabel timer;
     private boolean b;
+    private long time;
     
     public TopPanel(){
+        time = System.currentTimeMillis();
         b = false;
         start = new JButton("Start");
-        title = new JLabel("",JLabel.CENTER);
-        timer = new JLabel("00:00",JLabel.CENTER);
+        title = new JLabel("RACECARZ",JLabel.CENTER);
+        title.setFont(new Font("Serif",Font.ITALIC,42));
+        timer = new JLabel(""+(System.currentTimeMillis()-time),JLabel.CENTER);
         setLayout(new GridLayout(1,3));
         add(start);
         add(title);
@@ -35,6 +39,12 @@ public class TopPanel extends JPanel implements ActionListener{
     }
     public boolean begin(){
         return b;
+    }
+    public String getTime(){
+        return timer.getText();
+    }
+    public void setTime(){
+        timer.setText(""+(System.currentTimeMillis()-time)/1000);
     }
     @Override
      public void actionPerformed(ActionEvent e){
