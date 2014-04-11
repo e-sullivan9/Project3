@@ -41,7 +41,6 @@ public class Project3 extends JFrame implements Runnable{
         add(new TopPanel(this));
         cars= new ArrayList<CarPanel>();
         for(int i=0;i<num;i++){
-            System.out.println(i);
             cars.add(new CarPanel());
             add(cars.get(i));
         }
