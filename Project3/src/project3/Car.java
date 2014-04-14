@@ -18,7 +18,6 @@ public class Car {
     private static int numOfCars = 0;
     private int carSpeed;
     Random rand = new Random();
-   // Venue route;
 
     // constructor to randomize car object
     public Car() {
@@ -97,13 +96,6 @@ public class Car {
     public int getInitPlace(){
         return initPlace;
     }
-   /* public int getTotalDistance(){
-        route.getTotalDistance();
-    }
-    public Stack getRoute(){
-        return route.getStack();
-    }
-*/
     // calculates speed
     public int calcSpeed() {
 
@@ -115,7 +107,6 @@ public class Car {
     public boolean equals(Car obj2) {
 
         boolean status;
-
         if (getNumOfCars() == obj2.getNumOfCars() && getCarSpeed() == obj2.getCarSpeed() &&
                 getCarWeight() == obj2.getCarWeight() && getTireType() == obj2.getTireType() &&
                 getEngineType() == obj2.getEngineType() && getInitCar() == obj2.getInitCar())

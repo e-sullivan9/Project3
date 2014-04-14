@@ -18,6 +18,7 @@ public class Route {
     ImageIcon letter;
     int distance;
     
+    
     public Route(ImageIcon letter, int distance){
         this.letter = letter;
         this.distance = distance;

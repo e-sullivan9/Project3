@@ -13,7 +13,7 @@ import java.awt.event.ActionListener;
 import javax.swing.*;
 
 /**
- *
+ * Adds Start and Pause Button, Timer and Title to the GUI.
  * @author Eric Sullivan
  */
 public class TopPanel extends JPanel implements ActionListener{
@@ -23,6 +23,7 @@ public class TopPanel extends JPanel implements ActionListener{
     private boolean b;
     private long time;
     
+    // Constructor creates init time, Start and title.
     public TopPanel(){
         time = System.currentTimeMillis();
         b = false;
@@ -37,12 +38,15 @@ public class TopPanel extends JPanel implements ActionListener{
         start.addActionListener(this);
         start.setFocusable(false);
     }
+    // Gives the Thread loop a pause effect
     public boolean begin(){
         return b;
     }
+    // returns current time
     public String getTime(){
         return timer.getText();
     }
+    //resets time
     public void setTime(){
         timer.setText("Time in Seconds: "+(System.currentTimeMillis()-time)/1000);
     }

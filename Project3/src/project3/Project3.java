@@ -22,14 +22,12 @@ import javax.swing.JOptionPane;
 
     
 /**
- *
+ * The JFrame of the Gui.
  * @author Eric Sullivan
  */
 public class Project3 extends JFrame implements Runnable, KeyListener{
     
      private final Dimension screenSize=Toolkit.getDefaultToolkit().getScreenSize();
-     private static final int HEIGHT = 1000;
-     private static final int WIDTH = 1940;
      private GridLayout grid;
      private ArrayList<CarPanel> cars;
      private Thread gameloop;
@@ -39,6 +37,7 @@ public class Project3 extends JFrame implements Runnable, KeyListener{
      private JLabel info;
      private int i;
      
+     // constructor takes the number of cars the user want and creates the screen.
     public Project3(int num){
         super("CarRace");
         this.num = num;
@@ -61,12 +60,14 @@ public class Project3 extends JFrame implements Runnable, KeyListener{
         add(info);
         setVisible(true);
     }
+    // starts the Thread and adds keyListener.
    public void start(){
         this.addKeyListener(this);
         this.setFocusable(true);
         gameloop = new Thread(this);
         gameloop.start();
     }
+   //runs the Thread loop and paints the carPanels. also increases timer and checks for winners and paints JOptionPane with the winner's info
     public void run(){
         while(gameloop==Thread.currentThread()){
             try{
@@ -76,10 +77,10 @@ public class Project3 extends JFrame implements Runnable, KeyListener{
                 e.getMessage();
             }
             if(top.begin()){
+                top.setTime();
             for(int i = 0;i<num;i++){
                 cars.get(i).setPaintable(true);
                 cars.get(i).repaint();
-                top.setTime();
                 if(cars.get(i).finished()&&cars.get(i).win()){
                     JOptionPane.showMessageDialog(null,"PLACE: "+ cars.get(i).getCar().getPlace()+"\n"+cars.get(i).getCar()+ "\n In "+top.getTime()+" Seconds");
                     cars.get(i).getCar().incPlace();
@@ -87,9 +88,6 @@ public class Project3 extends JFrame implements Runnable, KeyListener{
             }
             }
         }
-    }
-    public ArrayList<CarPanel> getCars(){
-        return cars;
     }
     
     @Override
