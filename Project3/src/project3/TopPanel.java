@@ -29,7 +29,7 @@ public class TopPanel extends JPanel implements ActionListener{
         start = new JButton("Start");
         title = new JLabel("RACECARZ",JLabel.CENTER);
         title.setFont(new Font("Serif",Font.ITALIC,42));
-        timer = new JLabel(""+(System.currentTimeMillis()-time),JLabel.CENTER);
+        timer = new JLabel("Time in Seconds: "+(System.currentTimeMillis()-time),JLabel.CENTER);
         setLayout(new GridLayout(1,3));
         add(start);
         add(title);
@@ -44,7 +44,7 @@ public class TopPanel extends JPanel implements ActionListener{
         return timer.getText();
     }
     public void setTime(){
-        timer.setText(""+(System.currentTimeMillis()-time)/1000);
+        timer.setText("Time in Seconds: "+(System.currentTimeMillis()-time)/1000);
     }
     @Override
      public void actionPerformed(ActionEvent e){

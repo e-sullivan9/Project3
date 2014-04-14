@@ -28,7 +28,10 @@ public class CarPanel extends JPanel{
     private int maxDest;
     private boolean p;
     private boolean fin;
+    Venue ven;
+    
     public CarPanel(){
+        ven = new Venue();
         p = false;
         fin = true;
         scrollX=0;
@@ -47,15 +50,16 @@ public class CarPanel extends JPanel{
     public void paintComponent(Graphics g){
         super.paintComponent(g);
         Graphics2D g2d = (Graphics2D) g;
+        ArrayList<Route> route = ven.getRoute();
         if(p&&!win()){
         increaseMove();
         p=false;
         }
         g2d.setColor(Color.BLACK);
-        g2d.drawImage(dest.get(0).getImage(), 0-scrollX, 10, null);
-        g2d.drawImage(dest.get(1).getImage(), maxDest/2-maxDest/4-scrollX, 10, null);
-        g2d.drawImage(dest.get(2).getImage(), maxDest/2+maxDest/4-scrollX, 10, null);
-        g2d.drawImage(dest.get(3).getImage(), maxDest-scrollX-50, 10, null);
+        g2d.drawImage(route.get(0).getImage(), route.get(0).getDistance()-scrollX, 10, null);
+        g2d.drawImage(route.get(1).getImage(), route.get(0).getDistance()+route.get(1).getDistance()-scrollX, 10, null);
+        g2d.drawImage(route.get(2).getImage(), route.get(0).getDistance()+route.get(1).getDistance()+route.get(2).getDistance()-scrollX, 10, null);
+        g2d.drawImage(route.get(3).getImage(), route.get(0).getDistance()+route.get(1).getDistance()+route.get(2).getDistance()+route.get(3).getDistance()-scrollX-50, 10, null);
         g2d.fillRect(0-scrollX, this.getHeight()-this.getHeight()/2-10, maxDest, 10);
         g2d.setColor(c);
         g2d.fillOval(movement-scrollX, this.getHeight()-this.getHeight()/2, this.getHeight()/2, this.getHeight()/2);
